@@ -57,15 +57,53 @@ public class MyMoviesCollection {
 
     //Bubble sort
     public void sortMoviesByYear() {
+        boolean sorted = false;
 
+        while (!sorted) {
+            sorted = true;
+
+            for (int i = 0; i < size - 1; i++) {
+                if (movies[i].year > movies[i + 1].year) {
+                    Movie aux = movies[i];
+                    movies[i] = movies[i + 1];
+                    movies[i + 1] = aux;
+                    sorted = false;
+                }
+
+            }
+
+        }
     }
 
     //Select sort
     public void sortMoviesByDuration() {
+        for (int i = 0; i < size - 1; i++) {
+            int minIndex = i;
+            for (int j = i; j < size; j++) {
+                if (movies[j].duration < movies[minIndex].duration) {
+                    minIndex = j;
+                }
+            }
+            Movie aux = movies[i];
+            movies[i] = movies[minIndex];
+            movies[minIndex] = aux;
+        }
 
     }
+
     //Insert sort
     public void sortMoviesByScore() {
+
+        for (int i = 1; i < size; i++) {
+            Movie aux = movies[i];
+            int j = i - 1;
+            while (j >= 0 && movies[j].score > aux.score) {
+                movies[j + 1] = movies[j];
+                j--;
+            }
+            movies[j + 1] = aux;
+
+        }
 
     }
 }
